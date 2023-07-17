@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 function generateRandomCustomers() {
   //math.floor function constructed with help from ChatGPT
@@ -40,7 +40,7 @@ const seattle = {
 };
 seattle.getRandomCustomers();
 seattle.projectedCookieSales(); // Calculate AND store sales for each hour open
-console.log("Seattle sales:", seattle.cookieSales);
+console.log('Seattle sales:', seattle.cookieSales);
 
 // const customersPerHour = seattle.getRandomCustomersPerHour();
 // console.log("Number of customers per hour:", customersPerHour);
@@ -78,7 +78,7 @@ const Tokyo = {
 };
 Tokyo.getRandomCustomers();
 Tokyo.projectedCookieSales();
-console.log("Tokyo sales:", Tokyo.cookieSales);
+console.log('Tokyo sales:', Tokyo.cookieSales);
 
 const Dubai = {
   minCust: 11,
@@ -113,7 +113,7 @@ const Dubai = {
 };
 Dubai.getRandomCustomers();
 Dubai.projectedCookieSales();
-console.log("Dubai sales:", Dubai.cookieSales);
+console.log('Dubai sales:', Dubai.cookieSales);
 
 const Paris = {
   minCust: 20,
@@ -148,7 +148,7 @@ const Paris = {
 };
 Paris.getRandomCustomers();
 Paris.projectedCookieSales();
-console.log("Paris sales:", Paris.cookieSales);
+console.log('Paris sales:', Paris.cookieSales);
 
 const Lima = {
   minCust: 2,
@@ -184,3 +184,30 @@ const Lima = {
 Lima.getRandomCustomers();
 Lima.projectedCookieSales();
 console.log('Lima sales:', Lima.cookieSales);
+
+// let ulSalesList = document.createElement('ul');
+
+function createUnorderedList(data, hours) {
+  let ul = document.createElement('ul');
+  for (let i = 0; i < data.length; i++) {
+    let li = document.createElement('li');
+    li.textContent = hours[i] + ': ' + parseInt(data[i]); // Use parseInt to remove decimal places
+    ul.appendChild(li);
+  }
+  return ul;
+}
+
+let seattleSalesList = createUnorderedList(seattle.cookieSales, seattle.hours);
+document.body.appendChild(seattleSalesList);
+
+let tokyoSalesList = createUnorderedList(Tokyo.cookieSales, Tokyo.hours);
+document.body.appendChild(tokyoSalesList);
+
+let dubaiSalesList = createUnorderedList(Dubai.cookieSales, Dubai.hours);
+document.body.appendChild(dubaiSalesList);
+
+let parisSalesList = createUnorderedList(Paris.cookieSales, Paris.hours);
+document.body.appendChild(parisSalesList);
+
+let limaSalesList = createUnorderedList(Lima.cookieSales, Paris.hours);
+document.body.appendChild(limaSalesList);

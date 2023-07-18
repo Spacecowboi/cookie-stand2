@@ -1,0 +1,53 @@
+/* Font styles */
+h1, h2, h3 {
+    font-family: 'Your Custom Font', sans-serif;
+    color: #333333;
+  }
+  
+  p {
+    font-family: 'Times New Roman', serif;
+    color: #666666;
+  }
+  
+  body {
+    background-color: #FCEFF9;
+  }
+  
+  .box, table {
+    background-color: #F8E0EC;
+  }
+  
+  .box {
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .box2 {
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  /* Colorful styles */
+  h1 {
+    color: #FF0080;
+  }
+  
+  h2 {
+    color: #FF1493;
+  }
+  
+  h3 {
+
+  }

@@ -1,213 +1,62 @@
 'use strict';
 
-function generateRandomCustomers() {
+//collaborated with Paul Brown
+//constructor function
+function Location (store, minCust, maxCust, avgCookies){
+  this.minCust = minCust;
+  this.maxCust = maxCust;
+  this.avgCookies = avgCookies;
+  this.store = store;
+  this.projectedCookieSales();
+}
+// All prototypes for constructor function and instantiated objects
+Location.prototype.hours =[ '6am',
+  '7am',
+  '8am',
+  '9am',
+  '10am',
+  '11am',
+  '12pm',
+  '1pm',
+  '2pm',
+  '3pm',
+  '4pm',
+  '5pm',
+  '6pm',
+  '7pm',];
+
+Location.prototype.cookieSales = [];
+
+Location.prototype.generateRandomCustomers = function() {
   //math.floor function constructed with help from ChatGPT
   return (
     Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust
   );
-}
-
-const seattle = {
-  minCust: 23,
-  maxCust: 65,
-  avgCookies: 6.3,
-  getRandomCustomers: generateRandomCustomers,
-  hours: [
-    '6am',
-    '7am',
-    '8am',
-    '9am',
-    '10am',
-    '11am',
-    '12pm',
-    '1pm',
-    '2pm',
-    '3pm',
-    '4pm',
-    '5pm',
-    '6pm',
-    '7pm',
-  ],
-  cookieSales: [], //Store cookie sales for each hour
-
-  projectedCookieSales: function () {
-    for (let i = 0; i < this.hours.length; i++) {
-      let customers = this.getRandomCustomers(); // genereating random customers per hour
-      let cookiesPurchased = customers * this.avgCookies; // Getting amount of cookies purchased
-      this.cookieSales.push(cookiesPurchased); // Putting our previously collected data into our empty array
-    }
-  },
 };
-seattle.getRandomCustomers();
-seattle.projectedCookieSales(); // Calculate AND store sales for each hour open
-console.log('Seattle sales:', seattle.cookieSales);
 
-// const customersPerHour = seattle.getRandomCustomersPerHour();
-// console.log("Number of customers per hour:", customersPerHour);
-
-const Tokyo = {
-  minCust: 3,
-  maxCust: 24,
-  avgCookies: 1.2,
-  getRandomCustomers: generateRandomCustomers,
-  hours: [
-    '6am',
-    '7am',
-    '8am',
-    '9am',
-    '10am',
-    '11a',
-    '12p',
-    '1pm',
-    '2pm',
-    '3pm',
-    '4pm',
-    '5pm',
-    '6pm',
-    '7pm',
-  ],
-  cookieSales: [],
-
-  projectedCookieSales: function () {
-    for (let i = 0; i < this.hours.length; i++) {
-      let customers = this.getRandomCustomers();
-      let cookiesPurchased = customers * this.avgCookies;
-      this.cookieSales.push(cookiesPurchased);
-    }
-  },
-};
-Tokyo.getRandomCustomers();
-Tokyo.projectedCookieSales();
-console.log('Tokyo sales:', Tokyo.cookieSales);
-
-const Dubai = {
-  minCust: 11,
-  maxCust: 38,
-  avgCookies: 3.7,
-  getRandomCustomers: generateRandomCustomers,
-  hours: [
-    '6am',
-    '7am',
-    '8am',
-    '9am',
-    '10am',
-    '11am',
-    '12p',
-    '1pm',
-    '2pm',
-    '3pm',
-    '4pm',
-    '5pm',
-    '6pm',
-    '7pm',
-  ],
-  cookieSales: [],
-
-  projectedCookieSales: function () {
-    for (let i = 0; i < this.hours.length; i++) {
-      let customers = this.getRandomCustomers();
-      let cookiesPurchased = customers * this.avgCookies;
-      this.cookieSales.push(cookiesPurchased);
-    }
-  },
-};
-Dubai.getRandomCustomers();
-Dubai.projectedCookieSales();
-console.log('Dubai sales:', Dubai.cookieSales);
-
-const Paris = {
-  minCust: 20,
-  maxCust: 38,
-  avgCookies: 2.3,
-  getRandomCustomers: generateRandomCustomers,
-  hours: [
-    '6am',
-    '7am',
-    '8am',
-    '9am',
-    '10am',
-    '11am',
-    '12pm',
-    '1pm',
-    '2pm',
-    '3pm',
-    '4pm',
-    '5pm',
-    '6pm',
-    '7pm',
-  ],
-  cookieSales: [],
-
-  projectedCookieSales: function () {
-    for (let i = 0; i < this.hours.length; i++) {
-      let customers = this.getRandomCustomers();
-      let cookiesPurchased = customers * this.avgCookies;
-      this.cookieSales.push(cookiesPurchased);
-    }
-  },
-};
-Paris.getRandomCustomers();
-Paris.projectedCookieSales();
-console.log('Paris sales:', Paris.cookieSales);
-
-const Lima = {
-  minCust: 2,
-  maxCust: 16,
-  avgCookies: 2.6,
-  getRandomCustomers: generateRandomCustomers,
-  hours: [
-    '6am',
-    '7am',
-    '8am',
-    '9am',
-    '10am',
-    '11am',
-    '12pm',
-    '1pm',
-    '2pm',
-    '3pm',
-    '4pm',
-    '5pm',
-    '6pm',
-    '7pm',
-  ],
-  cookieSales: [],
-
-  projectedCookieSales: function () {
-    for (let i = 0; i < this.hours.length; i++) {
-      let customers = this.getRandomCustomers();
-      let cookiesPurchased = customers * this.avgCookies;
-      this.cookieSales.push(cookiesPurchased);
-    }
-  },
-};
-Lima.getRandomCustomers();
-Lima.projectedCookieSales();
-console.log('Lima sales:', Lima.cookieSales);
-
-// let ulSalesList = document.createElement('ul');
-
-function createUnorderedList(data, hours) {
-  let ul = document.createElement('ul');
-  for (let i = 0; i < data.length; i++) {
-    let li = document.createElement('li');
-    li.textContent = hours[i] + ': ' + parseInt(data[i]); // Use parseInt to remove decimal places
-    ul.appendChild(li);
+Location.prototype.projectedCookieSales = function () {
+  for (let i = 0; i < this.hours.length; i++) {
+    let customers = this.generateRandomCustomers();
+    let cookiesPurchased = customers * this.avgCookies;
+    this.cookieSales.push(cookiesPurchased);
   }
-  return ul;
-}
+};
 
-let seattleSalesList = createUnorderedList(seattle.cookieSales, seattle.hours);
-document.body.appendChild(seattleSalesList);
+// Variable arguments to be passed into constructor function
+let seattle = new Location('Seattle', 23, 65, 6.3);
+let tokyo = new Location ('Tokyo', 3, 24, 1.2);
+let dubai = new Location ('Dubai', 11, 38, 3.7);
+let paris = new Location ('Paris', 20, 38, 2.3);
+let lima = new Location ('Lima', 2, 16, 4.6);
 
-let tokyoSalesList = createUnorderedList(Tokyo.cookieSales, Tokyo.hours);
-document.body.appendChild(tokyoSalesList);
 
-let dubaiSalesList = createUnorderedList(Dubai.cookieSales, Dubai.hours);
-document.body.appendChild(dubaiSalesList);
+// Hold our instantiated objects in a new array
 
-let parisSalesList = createUnorderedList(Paris.cookieSales, Paris.hours);
-document.body.appendChild(parisSalesList);
+const locations = [];
 
-let limaSalesList = createUnorderedList(Lima.cookieSales, Paris.hours);
-document.body.appendChild(limaSalesList);
+locations.push(seattle, tokyo, dubai, paris, lima);
+console.log(locations);
+
+// Create table via JS
+
+

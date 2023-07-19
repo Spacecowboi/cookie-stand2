@@ -9,7 +9,7 @@ function Location (store, minCust, maxCust, avgCookies){
   this.store = store;
   this.projectedCookieSales();
 }
-// All prototypes for constructor function
+// All prototypes for constructor function and instantiated objects
 Location.prototype.hours =[ '6am',
   '7am',
   '8am',
@@ -49,8 +49,14 @@ let dubai = new Location ('Dubai', 11, 38, 3.7);
 let paris = new Location ('Paris', 20, 38, 2.3);
 let lima = new Location ('Lima', 2, 16, 4.6);
 
-console.log(seattle);
-console.log(tokyo);
-console.log(dubai);
-console.log(paris);
-console.log(lima);
+
+// Hold our instantiated objects in a new array
+
+const locations = [];
+
+locations.push(seattle, tokyo, dubai, paris, lima);
+console.log(locations);
+
+// Create table via JS
+
+

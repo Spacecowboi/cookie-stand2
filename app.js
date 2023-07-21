@@ -29,7 +29,7 @@ Location.prototype.projectedCookieSales = function () {
 };
 
 // I need to create a property that is a function which adds a render method for each location as a new row to the table
-Location.prototype.render = function(){
+Location.prototype.render = function(insertElement = null){
   const table = document.getElementById('sales-table');
   const row = document.createElement('tr');
   row.innerHTML = `<td>${this.store}</td>`; // populating cells with data
@@ -41,7 +41,12 @@ Location.prototype.render = function(){
   }
   const roundedDailyTotal = dailyTotal.toFixed(0);
   row.innerHTML += `<td>${roundedDailyTotal}</td>`;
-  table.appendChild(row);
+  console.log(insertElement);
+  if (insertElement) {
+    table.insertBefore(row, insertElement);
+  } else {
+    table.appendChild(row);
+  }
 };
 
 
@@ -95,14 +100,53 @@ const locations = [];
 locations.push(seattle, tokyo, dubai, paris, lima);
 console.log(locations);
 
-// SUMMON THE TABLE MILORD
+//EVENT HANDLING
+document.getElementById('new-store-form').addEventListener('submit', function(event){
+  event.preventDefault();
 
-function renderTable(){
-  makeHeaderRow();
-  for (const location of locations){
-    location.render();
+  // values from the form
+  let storeName = event.target.storeName.value;
+  let minCustomers = parseInt(event.target.minCustomers.value);
+  let maxCustomers = parseInt(event.target.maxCustomers.value);
+  let avgCookies = parseFloat(event.target.avgCookies.value);
+
+  // New instances of Location
+  let newLocation = new Location(storeName, minCustomers, maxCustomers, avgCookies);
+
+  // Grabbing the table element and the footer row
+  let footerRow = document.querySelector('tr:last-child');
+  console.log(footerRow);
+  //Inserting the new store's row BEFORE the footer row
+  newLocation.render(footerRow);
+
+  // Pushing the new store into the locations array
+  locations.push(newLocation);
+
+  updateFooterRow(locations);
+  // .reset() is a more concise (dry) way to reset the form fields for the next inputs
+  event.target.reset();
+});
+
+// Function to update the footer row with new totals
+//function help by chatGPT
+function updateFooterRow(locations){
+  let footerRow = document.querySelector('sales-footer');
+  let hourlyTotal;
+  let grandTotal = 0;
+
+  for(let i = 0; i < Location.prototype.hours.length; i++){
+    hourlyTotal = 0;
+    for (const location of locations){
+      hourlyTotal += location.cookieSales[i];
+    }
+    footerRow.children[i + 1].textContent = hourlyTotal.toFixed(0);
+    grandTotal += hourlyTotal;
   }
-  makeFooterRow(locations);
+  footerRow.lastElementChild.textContent = grandTotal.toFixed(0);
 }
-renderTable();
 
+makeHeaderRow();
+for(const location of locations){
+  location.render();
+}
+makeFooterRow(locations);

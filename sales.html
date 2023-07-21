@@ -13,13 +13,34 @@
     </header>
     <main>
         <fieldset>
-            <legend>New store!</legend>
+            <legend>Add a new store!</legend>
+            <form id="new-store-form">
                 <div class="store-input">
                  <label for="store-name">Store Name</label>
                  <input id="store-name" type="text" name="storeName" placeholder="New Store Here!" required>
-                </div>  
+                </div>
+                <div class="store-input">
+                    <label for="min-customers">Minimum Customers</label>
+                    <input id="min-customers" type="number" name="minCustomers" required>
+                </div>
+                <div class="store-input">
+                    <label for="max-customers">Maximum Customers</label>
+                    <input id="max-customers" type="number" name="maxCustomers" required>
+                </div>
+                <div class="store-input">
+                    <label for="avg-cookies">Average Cookies</label>
+                    <input id="avg-cookies" type="numbers" name="avgCookies" required>
+                </div>
+                <div class="store-input">
+                    <button type="submit">Add Store</button>
+                </div>
+            </form>
         </fieldset>
         <table id="sales-table">
+            <thead>
+            </thead>
+            <tfoot id="sales-footer">
+            </tfoot>
         </table>
         <ul id="sales-lists"></ul>
     </main>
